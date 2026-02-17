@@ -3,6 +3,9 @@ export interface City {
   name: string;
   forecastValue: string;
   forecastPercent: number;
-  chartData: number[];
+  chartDataValue: number[];
+  chartDataPercent: number[];
+  chartLabelsValue?: string[];
+  chartLabelsPercent?: string[];
   position: [number, number]; // [lat, lng]
 }

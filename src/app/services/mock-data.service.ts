@@ -10,7 +10,8 @@ export class MockDataService {
         name: 'New York',
         forecastValue: '1,200,000',
         forecastPercent: 12.5,
-        chartData: [100, 120, 130, 125, 140, 150, 160, 170, 180, 190],
+        chartDataValue: [100, 120, 110, 140, 130, 170, 160, 180, 150, 190],
+        chartDataPercent: [10, 13, 11, 15, 12, 17, 14, 19, 13, 18],
         position: [40.7128, -74.0060]
       },
       {
@@ -18,7 +19,8 @@ export class MockDataService {
         name: 'London',
         forecastValue: '950,000',
         forecastPercent: 8.2,
-        chartData: [90, 100, 110, 120, 130, 140, 150, 160, 170, 180],
+        chartDataValue: [90, 92, 95, 100, 120, 110, 130, 120, 140, 135],
+        chartDataPercent: [8, 8.2, 8.5, 8.1, 8.7, 8.3, 8.9, 8.4, 9, 8.6],
         position: [51.5074, -0.1278]
       },
       {
@@ -26,7 +28,8 @@ export class MockDataService {
         name: 'Tokyo',
         forecastValue: '1,500,000',
         forecastPercent: 15.1,
-        chartData: [110, 115, 120, 130, 140, 150, 160, 170, 180, 200],
+        chartDataValue: [110, 130, 120, 140, 160, 150, 170, 180, 200, 190],
+        chartDataPercent: [12, 14, 13, 15, 16, 15, 17, 18, 21, 20],
         position: [35.6895, 139.6917]
       },
       {
@@ -34,7 +37,8 @@ export class MockDataService {
         name: 'Paris',
         forecastValue: '800,000',
         forecastPercent: 6.7,
-        chartData: [80, 85, 90, 95, 100, 110, 120, 130, 140, 150],
+        chartDataValue: [80, 100, 90, 110, 100, 120, 110, 130, 120, 140],
+        chartDataPercent: [6, 6.5, 6.2, 7, 6.4, 7.2, 6.6, 7.4, 6.8, 7.6],
         position: [48.8566, 2.3522]
       },
       {
@@ -42,7 +46,8 @@ export class MockDataService {
         name: 'Sydney',
         forecastValue: '700,000',
         forecastPercent: 5.3,
-        chartData: [70, 75, 80, 85, 90, 95, 100, 105, 110, 115],
+        chartDataValue: [70, 80, 75, 90, 85, 100, 95, 110, 105, 115],
+        chartDataPercent: [5, 5.2, 5.1, 5.4, 5.3, 5.6, 5.5, 5.8, 5.7, 5.9],
         position: [-33.8688, 151.2093]
       }
     ];

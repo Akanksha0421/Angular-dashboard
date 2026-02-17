@@ -1,8 +1,48 @@
+:host ::ng-deep .forecast-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+:host ::ng-deep .forecast-labels {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+:host ::ng-deep .forecast-title {
+  font-size: 0.95rem;
+  color: #b0c4de;
+  margin-bottom: 0.1rem;
+}
+
+:host ::ng-deep .forecast-value {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+:host ::ng-deep .forecast-percent {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #00ffb3;
+}
+
+:host ::ng-deep .forecast-chart {
+  flex: 0 0 100px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 40px;
+}
 
 :host {
-  display: block;
-  min-width: 240px;
-  max-width: 260px;
+  display: flex;
+  flex-direction: column;
+  min-width: 220px;
+  max-width: 100%;
+  width: 100%;
   background: rgba(22, 36, 58, 0.7); /* semi-transparent dark blue */
   border-radius: 16px;
   border: 2px solid #00bfff;
@@ -12,10 +52,37 @@
   cursor: pointer;
   transition: box-shadow 0.3s, border-color 0.3s;
   position: relative;
+  box-sizing: border-box;
 }
 :host(:hover) {
   box-shadow: 0 0 32px 4px #00bfff99;
   border-color: #fff;
+}
+
+@media (max-width: 900px) {
+  :host {
+    min-width: 180px;
+    padding: 1rem 0.7rem;
+  }
+  h3 {
+    font-size: 1rem;
+  }
+  .forecast-value, .forecast-percent {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  :host {
+    min-width: 140px;
+    padding: 0.7rem 0.4rem;
+  }
+  h3 {
+    font-size: 0.9rem;
+  }
+  .forecast-value, .forecast-percent {
+    font-size: 0.9rem;
+  }
 }
 h3 {
   margin: 0 0 0.5rem 0;

@@ -1,12 +1,31 @@
 <div class="city-widget" (click)="onWidgetClick()" style="cursor:pointer;">
-	<h3>{{ city?.name }}</h3>
-	<div>Forecast: {{ city?.forecastValue }}</div>
-	<div>Forecast: {{ city?.forecastPercent }}%</div>
-	<div style="height:40px; width:100px;">
-		<canvas baseChart
-			[data]="lineChartData"
-			[options]="lineChartOptions"
-			[type]="lineChartType">
-		</canvas>
-	</div>
+    <h3>{{ city?.name }}</h3>
+    <div class="forecast-row">
+        <div class="forecast-labels">
+            <div class="forecast-title">Forecast</div>
+            <div class="forecast-value">{{ city?.forecastValue }}</div>
+        </div>
+        <div class="forecast-chart">
+            <canvas baseChart
+                [data]="lineChartDataValue"
+                [options]="lineChartOptions"
+                [type]="lineChartType"
+                style="height:40px; width:100px;">
+            </canvas>
+        </div>
+    </div>
+    <div class="forecast-row">
+        <div class="forecast-labels">
+            <div class="forecast-title">Forecast</div>
+            <div class="forecast-percent">{{ city?.forecastPercent }}%</div>
+        </div>
+        <div class="forecast-chart">
+            <canvas baseChart
+                [data]="lineChartDataPercent"
+                [options]="lineChartOptions"
+                [type]="lineChartType"
+                style="height:40px; width:100px;">
+            </canvas>
+        </div>
+    </div>
 </div>
