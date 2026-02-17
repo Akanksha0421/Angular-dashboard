@@ -1,0 +1,31 @@
+<div class="landing-root">
+  <div class="map-bg">
+    <app-map [cities]="cities"></app-map>
+    <div class="map-overlay"></div>
+  </div>
+  <div class="content-stack">
+    <header class="top-bar">
+      <span class="menu-icon" style="font-size: 1.5rem; margin-right: 1.5rem; cursor: pointer;" (click)="onMenuClick()">&#9776;</span>
+      <span class="logo">Webapp</span>
+      <span style="flex:1"></span>
+      <span class="user-actions">
+        <span class="icon" style="margin-right: 1.2rem; font-size: 1.3rem; cursor: pointer;">🌐</span>
+        <span class="icon" style="font-size: 1.3rem; margin-right: 0.5rem; cursor: pointer;">👤</span>
+        <span class="user-info">user</span>
+      </span>
+    </header>
+    <div class="hello-row">
+      <span class="hello-user">Hello User,</span>
+      <span class="action-items">There are <b>2</b> to action items.</span>
+    </div>
+    <div class="widgets-row">
+      <div class="widgets-scroll">
+        <app-city-widget
+          *ngFor="let city of cities"
+          [city]="city"
+          (cityClick)="onCityClick(city.id)">
+        </app-city-widget>
+      </div>
+    </div>
+  </div>
+</div>

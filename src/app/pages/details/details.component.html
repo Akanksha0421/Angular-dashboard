@@ -1,0 +1,31 @@
+<div style="display: flex; gap: 24px;">
+	<div style="width: 260px;">
+		<app-sidebar [stacks]="stacks" [selectedStackId]="selectedStackId" (stackSelect)="onStackSelect($event)"></app-sidebar>
+	</div>
+	<div style="flex: 1;">
+		<div style="background: #fff; border-radius: 8px; padding: 24px; margin-bottom: 24px;">
+			<canvas baseChart
+				[data]="chartData"
+				[options]="chartOptions"
+				[type]="chartType"
+				height="120">
+			</canvas>
+		</div>
+		<div style="overflow-x:auto;">
+			<table style="width:100%; border-collapse:collapse; background:#fff;">
+				<thead>
+					<tr>
+						<th style="padding:8px; border-bottom:1px solid #eee;"></th>
+						<th *ngFor="let label of chartData.labels" style="padding:8px; border-bottom:1px solid #eee;">{{ label }}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let row of tableData">
+						<td style="padding:8px; border-bottom:1px solid #eee; font-weight:bold;">{{ row.label }}</td>
+						<td *ngFor="let val of row.values" style="padding:8px; border-bottom:1px solid #eee;">{{ val }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

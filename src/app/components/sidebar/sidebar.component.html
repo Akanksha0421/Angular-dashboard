@@ -1,0 +1,13 @@
+<div class="sidebar">
+	<div *ngFor="let stack of stacks" 
+			 (click)="onSelect(stack.id)"
+			 [style.background]="stack.id === selectedStackId ? '#e0f7fa' : '#fff'"
+			 style="margin-bottom: 8px; padding: 12px; border-radius: 6px; cursor: pointer; border: 1px solid #ccc;">
+		<div><b>{{ stack.name }}</b></div>
+		<div>Status: {{ stack.status }}</div>
+		<div>
+			<span>F'CAST STAB. {{ stack.forecastStab }}</span>
+			<span style="margin-left: 8px;">F'CAST ACC. {{ stack.forecastAcc }}</span>
+		</div>
+	</div>
+</div>
