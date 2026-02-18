@@ -1,0 +1,227 @@
+// Sidebar overlay look
+.sidebar {
+	background: #17212b;
+	color: #eaf6fb;
+	width: 370px;
+	max-width: 100vw;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 20;
+	box-shadow: 2px 0 24px 0 #00bfff44;
+	display: flex;
+	flex-direction: column;
+	padding: 0;
+	border-top-right-radius: 18px;
+	border-bottom-right-radius: 18px;
+}
+.sidebar-header {
+	display: flex;
+	align-items: center;
+	padding: 1.2rem 1.5rem 0.7rem 1.5rem;
+	background: transparent;
+	font-size: 12px;
+	font-weight: 600;
+}
+.sidebar-back {
+	background: #1e2a36;
+	color: #00bfff;
+	border: none;
+	border-radius: 8px;
+	padding: 0.4rem 1.1rem;
+	font-size: 12px;
+	margin-right: 1.2rem;
+	cursor: pointer;
+	transition: background 0.2s;
+}
+.sidebar-back:hover {
+	background: #00bfff;
+	color: #fff;
+}
+.sidebar-title {
+	font-size: 12px;
+	font-weight: 700;
+	color: #eaf6fb;
+}
+.sidebar-tabs {
+	display: flex;
+	gap: 1.2rem;
+	padding: 0.2rem 1.5rem 0.7rem 1.5rem;
+	border-bottom: 1px solid #22303c;
+	margin-bottom: 0.2rem;
+}
+.sidebar-tabs > div {
+	cursor: pointer;
+	font-size: 12px;
+	font-weight: 600;
+	color: #6be6ff;
+	padding-bottom: 0.3rem;
+	border-bottom: 2px solid transparent;
+	transition: color 0.2s, border-bottom 0.2s;
+}
+.sidebar-tabs > div.active {
+	color: #00ffd0;
+	border-bottom: 2.5px solid #00ffd0;
+}
+.sidebar-filter-row {
+	display: flex;
+	align-items: center;
+	padding: 0.7rem 1.5rem 0.5rem 1.5rem;
+	gap: 1rem;
+}
+.filter-label {
+	display: flex;
+	align-items: center;
+	color: #00ffd0;
+	font-weight: 500;
+	cursor: pointer;
+	font-size: 12px;
+}
+.filter-icon {
+	margin-left: 0.4rem;
+	font-size: 12px;
+}
+.filter-input {
+	background: #1e2a36;
+	border: 1px solid #00bfff;
+	color: #eaf6fb;
+	border-radius: 6px;
+	padding: 0.3rem 0.8rem;
+	font-size: 12px;
+	outline: none;
+	min-width: 120px;
+}
+.sidebar-stack-list {
+	flex: 1 1 auto;
+	overflow-y: auto;
+	padding: 0.2rem 0 1.2rem 0;
+}
+.sidebar-stack-row {
+	display: flex;
+	align-items: center;
+	gap: 0.7rem;
+	background: #1e2a36;
+	border-radius: 10px;
+	margin: 0.5rem 1.2rem;
+	padding: 0.7rem 1rem;
+	font-size: 12px;
+	color: #eaf6fb;
+	cursor: pointer;
+	border: 2px solid transparent;
+	transition: background 0.2s, border 0.2s;
+}
+.sidebar-stack-row.selected {
+	border: 2px solid #00bfff;
+	background: #193a4d;
+}
+.sidebar-stack-row:hover {
+	background: #22303c;
+}
+.sidebar-stack-row input[type="checkbox"] {
+	accent-color: #00ffd0;
+	width: 1.1rem;
+	height: 1.1rem;
+	margin-right: 0.3rem;
+}
+.forecast-label {
+	display: inline-block;
+	background: #22303c;
+	color: #00ffd0;
+	border-radius: 6px;
+	padding: 0.1rem 0.6rem;
+	font-size: 12px;
+	font-weight: 600;
+	margin-right: 0.3rem;
+}
+.forecast-label.up {
+	color: #00ffd0;
+}
+.forecast-label.down {
+	color: #ff6b6b;
+}
+.stack-name {
+	flex: 1 1 auto;
+	font-weight: 500;
+	color: #eaf6fb;
+	margin-left: 0.5rem;
+}
+.stack-link {
+	color: #00ffd0;
+	font-size: 12px;
+	margin-left: 0.7rem;
+	cursor: pointer;
+	transition: color 0.2s;
+}
+.stack-link:hover {
+	color: #fff;
+}
+@media (max-width: 600px) {
+	.sidebar {
+		width: 100vw;
+		border-radius: 0;
+	}
+	.sidebar-header, .sidebar-tabs, .sidebar-filter-row {
+		padding-left: 0.7rem;
+		padding-right: 0.7rem;
+	}
+	.sidebar-stack-row {
+		margin-left: 0.3rem;
+		margin-right: 0.3rem;
+		padding: 0.5rem 0.5rem;
+	}
+}
+// Sidebar styles
+.sidebar {
+	width: 23%;
+	background: #18202a;
+	color: #fff;
+	height: 100vh;
+	overflow-y: auto;
+	transition: width 0.2s;
+	box-shadow: 2px 0 8px rgba(0,0,0,0.08);
+	padding: 0.5rem 0.5rem 0 0.5rem;
+}
+.sidebar.collapsed {
+	width: 60px;
+	min-width: 60px;
+	overflow-x: hidden;
+}
+.sidebar-header {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-bottom: 1rem;
+}
+.sidebar-toggle {
+	background: none;
+	border: none;
+	color: #fff;
+	font-size: 12px;
+	cursor: pointer;
+	margin-right: 0.5rem;
+}
+.sidebar-back {
+	background: #2a9fd6;
+	border: none;
+	color: #fff;
+	font-size: 1;
+	border-radius: 4px;
+	padding: 0.2rem 0.7rem;
+	cursor: pointer;
+}
+.sidebar-stack-card {
+	background: #fff;
+	color: #222;
+	margin-bottom: 8px;
+	padding: 12px;
+	border-radius: 6px;
+	cursor: pointer;
+	border: 1px solid #ccc;
+	transition: background 0.2s, color 0.2s;
+}
+.sidebar-stack-card.selected {
+	background: #e0f7fa;
+	color: #007b8a;
+	border: 2px solid #2a9fd6;
+}

@@ -1,0 +1,26 @@
+.top-bar {
+  z-index: 10;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(24, 31, 42, 0.95);
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  border-bottom: 1px solid #222;
+}
+.logo {
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: #eaf6fb;
+}
+.user-actions {
+  display: flex;
+  align-items: center;
+  color: #eaf6fb;
+}
+.user-info {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-left: 0.3rem;
+}

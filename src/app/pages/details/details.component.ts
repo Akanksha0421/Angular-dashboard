@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MockDataService } from '../../services/mock-data.service';
 import { SidebarComponent } from '../../components/sidebar/sidebar.component';
+import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { NgChartsModule } from 'ng2-charts';
 import { ChartConfiguration, ChartType } from 'chart.js';
 import { CommonModule } from '@angular/common';
@@ -9,12 +10,14 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [CommonModule, SidebarComponent, NgChartsModule],
+  imports: [CommonModule, SidebarComponent, NgChartsModule, NavbarComponent],
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss']
 })
 export class DetailsComponent implements OnInit{
-
+    onMenuClick() {
+      this.sidebarOpen = !this.sidebarOpen;
+    }
   cityId: number = 0;
   stacks: any[] = [];
   selectedStackId: number | null = null;
@@ -32,6 +35,7 @@ export class DetailsComponent implements OnInit{
   };
   chartType: 'line' = 'line';
   tableData: any[] = [];
+  sidebarOpen = false;
 
   constructor(private route: ActivatedRoute, private dataService: MockDataService) {}
 
@@ -42,11 +46,16 @@ export class DetailsComponent implements OnInit{
       this.selectedStackId = this.stacks[0].id;
       this.updateChartData();
     }
+    this.sidebarOpen = false;
   }
 
   onStackSelect(stackId: number) {
     this.selectedStackId = stackId;
     this.updateChartData();
+  }
+
+  onSidebarBack() {
+    this.sidebarOpen = false;
   }
 
   updateChartData() {

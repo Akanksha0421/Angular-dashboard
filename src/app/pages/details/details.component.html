@@ -1,8 +1,14 @@
-<div style="display: flex; gap: 24px;">
-	<div style="width: 260px;">
-		<app-sidebar [stacks]="stacks" [selectedStackId]="selectedStackId" (stackSelect)="onStackSelect($event)"></app-sidebar>
-	</div>
-	<div style="flex: 1;">
+<div class="details-root">
+	<app-navbar (menuClick)="onMenuClick()"></app-navbar>
+	<app-sidebar
+		*ngIf="sidebarOpen"
+		[stacks]="stacks"
+		[selectedStackId]="selectedStackId"
+		[expanded]="sidebarOpen"
+		(stackSelect)="onStackSelect($event)"
+		(back)="onSidebarBack()"
+	></app-sidebar>
+	<div class="details-content">
 		<div style="background: #fff; border-radius: 8px; padding: 24px; margin-bottom: 24px;">
 			<canvas baseChart
 				[data]="chartData"

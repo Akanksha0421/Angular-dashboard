@@ -1,13 +1,36 @@
-<div class="sidebar">
-	<div *ngFor="let stack of stacks" 
-			 (click)="onSelect(stack.id)"
-			 [style.background]="stack.id === selectedStackId ? '#e0f7fa' : '#fff'"
-			 style="margin-bottom: 8px; padding: 12px; border-radius: 6px; cursor: pointer; border: 1px solid #ccc;">
-		<div><b>{{ stack.name }}</b></div>
-		<div>Status: {{ stack.status }}</div>
-		<div>
-			<span>F'CAST STAB. {{ stack.forecastStab }}</span>
-			<span style="margin-left: 8px;">F'CAST ACC. {{ stack.forecastAcc }}</span>
+<div class="sidebar" [class.collapsed]="!expanded">
+	<div class="sidebar-header">
+		<button (click)="goBack()" class="sidebar-back">←</button>
+		<span class="sidebar-title">Sample Stack</span>
+	</div>
+	<div class="sidebar-tabs">
+		<div *ngFor="let tab of tabs; let i = index"
+				 (click)="selectTab(tab.key)"
+				 [class.active]="selectedTab === tab.key">
+			{{ tab.label }} ({{ getTabCount(tab.key) }})
+		</div>
+	</div>
+	<div class="sidebar-filter-row">
+		<span class="filter-label" (click)="toggleFilter()">
+			<span>Filter</span>
+			<span class="filter-icon">&#128269;</span>
+		</span>
+		<input *ngIf="showFilter" [(ngModel)]="filterText" placeholder="Type to filter..." class="filter-input" />
+	</div>
+	<div class="sidebar-stack-list">
+		<div *ngFor="let stack of filteredStacks(); let idx = index"
+				 class="sidebar-stack-row"
+				 [class.selected]="stack.id === selectedStackId"
+				 (click)="onSelect(stack.id)">
+			<input type="checkbox" [(ngModel)]="stack.selected" (click)="$event.stopPropagation()" />
+			<span class="forecast-label forecast-stab" [ngClass]="{'up': stack.forecastStab === '↑', 'down': stack.forecastStab === '↓'}">
+				F'CAST STAB. {{ stack.forecastStab }}
+			</span>
+			<span class="forecast-label forecast-acc" [ngClass]="{'up': stack.forecastAcc === '↑', 'down': stack.forecastAcc === '↓'}">
+				F'CAST ACC. {{ stack.forecastAcc }}
+			</span>
+			<span class="stack-name">{{ stack.name }}</span>
+			<span class="stack-link" (click)="openStack(stack); $event.stopPropagation();">&#x2197;</span>
 		</div>
 	</div>
 </div>
