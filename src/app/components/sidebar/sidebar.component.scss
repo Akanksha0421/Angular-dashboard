@@ -54,15 +54,15 @@
 .sidebar-tabs > div {
 	cursor: pointer;
 	font-size: 12px;
-	font-weight: 600;
-	color: #6be6ff;
+	// font-weight: 600;
+	color: #787f83;
 	padding-bottom: 0.3rem;
 	border-bottom: 2px solid transparent;
 	transition: color 0.2s, border-bottom 0.2s;
 }
 .sidebar-tabs > div.active {
-	color: #00ffd0;
-	border-bottom: 2.5px solid #00ffd0;
+	color: #4bbaa9;
+	border-bottom: 2.5px solid #4bbaa9;
 }
 .sidebar-filter-row {
 	display: flex;
@@ -126,19 +126,20 @@
 }
 .forecast-label {
 	display: inline-block;
-	background: #22303c;
+	background: #f2f2f1;
 	color: #00ffd0;
 	border-radius: 6px;
 	padding: 0.1rem 0.6rem;
 	font-size: 12px;
 	font-weight: 600;
 	margin-right: 0.3rem;
+	white-space: nowrap;
 }
 .forecast-label.up {
-	color: #00ffd0;
+	color: #090f14;
 }
 .forecast-label.down {
-	color: #ff6b6b;
+	color: #090f14;
 }
 .stack-name {
 	flex: 1 1 auto;

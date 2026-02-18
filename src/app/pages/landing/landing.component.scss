@@ -76,46 +76,224 @@ app-sidebar.collapsed, app-sidebar[ng-reflect-expanded="false"] {
   color: #eaf6fb;
 }
 .action-items {
-  background: #2a9fd6;
-  color: #fff;
-  font-size: 1.1rem;
-  font-weight: 500;
-  border-radius: 8px;
-  padding: 0.4rem 1.2rem;
-  margin-left: 1rem;
+     background: #6ac1ed;
+    color: black;
+    font-size: 1.15rem;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 0.5rem 1.6rem 0.5rem 1.6rem;
+    margin-left: 1rem;
+    display: inline-flex;
+    align-items: center;
+    /* box-shadow: 0 2px 12px 0 rgba(0, 191, 255, 0.2); */
+    /* border: 1.5px solid #00bfff; */
+    letter-spacing: 0.01em;
+    min-height: 2.2rem;
+    /* min-width: 2.2rem; */
+    /* justify-content: center; */
+    /* transition: box-shadow 0.2s, border-color 0.2s; */
 }
+
+.action-items b {
+  font-weight: 700;
+  color: black;
+}
+// --- Widget Alignment Customization ---
 .widgets-row {
   margin: 2rem 0 1rem 0;
   padding: 0 2rem;
   flex: 0 0 auto;
   background: transparent;
+  display: flex;
+  width: 100%;
+  height: auto;
+}
+
+// When sidebar is open, shift widgets to the right to avoid overlap
+.widgets-row.sidebar-open.align-top,
+.widgets-row.sidebar-open.align-bottom {
+  margin-left: 21%;
+  width: calc(100vw - 320px);
+  transition: width 0.3s, margin-left 0.3s;
+}
+.widgets-row.align-top,
+.widgets-row.align-bottom {
+  flex-wrap: wrap;
+}
+
+// For left alignment, position widgets column to the right of sidebar
+.widgets-row.align-left.sidebar-open {
+  left: 23%;
+  width: auto;
+  margin-left: 0;
+  transition: left 0.3s;
+}
+
+
+// Default: bottom (horizontal)
+
+// --- Overlay for top/bottom alignment ---
+.widgets-row.align-bottom,
+.widgets-row.align-top {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  z-index: 20;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+}
+.widgets-row.align-top {
+  top: 20%; /* Adjust this value if your navbar or hello-row height changes */
+  align-items: flex-start;
+  justify-content: center;
+}
+.widgets-row.align-bottom {
+  bottom: 0;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+// --- Fix for left/right alignment: make widget column fixed to edge and vertically centered ---
+
+// --- Improved left/right alignment: background, shadow, spacing, scrollability ---
+
+// --- Overlay for left/right alignment ---
+.widgets-row.align-left,
+.widgets-row.align-right {
+  position: fixed;
+  top: 150px; /* Match navbar + hello-row height */
+  bottom: 0;
+  left: unset;
+  right: unset;
+  z-index: 20;
+  flex-direction: column;
+  height: auto;
+  min-height: 0;
+  max-height: unset;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: auto;
+  min-width: 220px;
+  max-width: 340px;
+  margin: 0;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+  pointer-events: none;
+}
+.widgets-row.align-left {
+  left: 0;
+  right: auto;
+  padding-left: 2rem;
+}
+.widgets-row.align-right {
+  right: 0;
+  left: auto;
+  align-items: flex-end;
+  padding-right: 2rem;
+}
+
+.widgets-row.align-left .widgets-scroll,
+.widgets-row.align-right .widgets-scroll {
+  background: rgba(22, 36, 58, 0.92); /* semi-transparent dark blue */
+  box-shadow: 0 4px 32px 0 #000a, 0 0 0 2px #00bfff44;
+  border-radius: 18px;
+  padding: 1.2rem 0.5rem;
+  max-height: calc(100vh - 6rem);
+  min-width: 220px;
+  max-width: 340px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  pointer-events: auto;
+}
+.widgets-row.align-left .widgets-scroll {
+  margin-left: 0;
+}
+.widgets-row.align-right .widgets-scroll {
+  margin-right: 0;
 }
 
 .widgets-scroll {
   display: grid;
-  grid-template-columns: repeat(5, minmax(220px, 1fr));
+  background: transparent;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  pointer-events: auto;
+}
+
+.widgets-scroll::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+// Horizontal (top/bottom)
+.widgets-scroll.horizontal {
+  display: flex;
+  flex-direction: row;
   gap: 2rem;
   overflow-x: auto;
   overflow-y: hidden;
-  position: relative;
-  padding-bottom: 1.5rem;
-  background: transparent;
+  width: 100%;
   max-width: 100vw;
+  padding-bottom: 2rem;
+  padding-top: 1rem;
+  padding-right: 2rem; /* Ensure last widget is fully visible */
+  padding-left: 2rem;  /* Ensure first widget is fully visible */
+  box-sizing: border-box;
+}
+
+// Vertical (left/right)
+.widgets-scroll.vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+  max-height: calc(100vh - 124px - 2rem); /* 124px header, 2rem padding */
+  min-width: 220px;
+  max-width: 340px;
+  padding: 0 0.5rem 0 0;
+  background: none;
+  box-shadow: none;
+}
+
+// Alignment helpers
+.widgets-scroll.align-left {
+  align-items: flex-start;
+  justify-items: flex-start;
+}
+.widgets-scroll.align-right {
+  align-items: flex-end;
+  justify-items: flex-end;
+}
+.widgets-scroll.align-top {
+  align-items: flex-start;
+}
+.widgets-scroll.align-bottom {
+  align-items: flex-end;
 }
 
 @media (max-width: 1400px) {
-  .widgets-scroll {
+  .widgets-scroll.horizontal {
     grid-template-columns: repeat(3, minmax(220px, 1fr));
   }
 }
 @media (max-width: 900px) {
-  .widgets-scroll {
+  .widgets-scroll.horizontal {
     grid-template-columns: repeat(2, minmax(180px, 1fr));
     gap: 1rem;
   }
+  .widgets-scroll.vertical {
+    gap: 0.7rem;
+    min-width: 140px;
+    max-width: 200px;
+  }
 }
 @media (max-width: 600px) {
-  .widgets-scroll {
+  .widgets-scroll.horizontal {
     grid-template-columns: 1fr;
     gap: 0.7rem;
     overflow-x: hidden;
@@ -123,21 +301,11 @@ app-sidebar.collapsed, app-sidebar[ng-reflect-expanded="false"] {
     max-height: 60vh;
     padding-bottom: 0.5rem;
   }
-}
-
-@media (max-width: 900px) {
-  .widgets-scroll {
-    gap: 1rem;
-  }
-}
-
-@media (max-width: 600px) {
-  .widgets-scroll {
-    gap: 0.7rem;
-    overflow-x: hidden;
-    overflow-y: auto;
-    max-height: 60vh;
-    padding-bottom: 0.5rem;
+  .widgets-scroll.vertical {
+    gap: 0.5rem;
+    min-width: 100px;
+    max-width: 120px;
+    height: 50vh;
   }
 }
 .map-overlay {

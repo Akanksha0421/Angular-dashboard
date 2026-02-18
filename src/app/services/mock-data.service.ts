@@ -54,24 +54,34 @@ export class MockDataService {
   }
 
   getSidebarStacks(cityId: number) {
-    // Return mock stacks for a city
-    return [
-      { id: 101, name: 'Sample Stack 1', status: 'BACKLOG', forecastStab: '↓', forecastAcc: '↑' },
-      { id: 102, name: 'Sample Stack 2', status: 'PENDING', forecastStab: '↑', forecastAcc: '↑' },
-      { id: 103, name: 'Sample Stack 3', status: 'FINAL SIGN-OFF', forecastStab: '↓', forecastAcc: '↓' },
-      { id: 104, name: 'Sample Stack 4', status: 'BACKLOG', forecastStab: '↑', forecastAcc: '↓' },
-    ];
+    // Return more realistic mock stacks for a city
+    const stacks = [];
+    for (let i = 1; i <= 12; i++) {
+      stacks.push({
+        id: 100 + i,
+        name: `Sample Stack ${i}`,
+        status: i <= 7 ? 'BACKLOG' : (i <= 10 ? 'PENDING' : 'FINAL SIGN-OFF'),
+        forecastStab: i % 2 === 0 ? '↑' : '↓',
+        forecastAcc: i % 3 === 0 ? '↓' : '↑',
+        forecastValue: (700000 + i * 10000).toLocaleString(),
+        forecastPercent: 5 + i * 0.7
+      });
+    }
+    return stacks;
   }
 
   getStackChartData(stackId: number) {
-    // Return mock chart data for a stack
+    // Return different mock chart data for each stackId for demo
+    const baseLabels = ['Q3 2022', 'Q4 2022', 'Q1 2023', 'Q2 2023', 'Q3 2023', 'Q4 2023', 'Q1 2024', 'Q2 2024', 'Q3 2024', 'Q4 2024', 'Q1 2025', 'Q2 2025'];
+    // Use stackId to generate different data
+    const offset = (stackId % 4) * 10000;
     return {
-      labels: ['Q3 2022', 'Q4 2022', 'Q1 2023', 'Q2 2023', 'Q3 2023', 'Q4 2023', 'Q1 2024', 'Q2 2024', 'Q3 2024', 'Q4 2024', 'Q1 2025', 'Q2 2025'],
+      labels: baseLabels,
       datasets: [
-        { label: 'Historical', data: [744038, 670100, 640250, 670000, 671100, 712033, 705500, 719123, 0, 0, 0, 0], borderColor: '#FFD600', fill: false },
-        { label: 'AI Forecast', data: [0, 0, 0, 0, 0, 0, 670100, 719123, 750000, 780000, 800000, 820000], borderColor: '#00BFFF', fill: false },
-        { label: 'Final Forecast', data: [0, 0, 0, 0, 0, 0, 671100, 712033, 705500, 719123, 730000, 740000], borderColor: '#FF4081', fill: false },
-        { label: 'Prev Qtr Final', data: [0, 0, 0, 0, 0, 0, 640250, 670000, 671100, 712033, 705500, 719123], borderColor: '#8BC34A', fill: false }
+        { label: 'Historical', data: [744038, 670100, 640250, 670000, 671100, 712033, 705500, 719123, 0, 0, 0, 0].map(v => v + offset), borderColor: '#FFD600', fill: false },
+        { label: 'AI Forecast', data: [0, 0, 0, 0, 0, 0, 670100, 719123, 750000, 780000, 800000, 820000].map(v => v + offset), borderColor: '#00BFFF', fill: false },
+        { label: 'Final Forecast', data: [0, 0, 0, 0, 0, 0, 671100, 712033, 705500, 719123, 730000, 740000].map(v => v + offset), borderColor: '#FF4081', fill: false },
+        { label: 'Prev Qtr Final', data: [0, 0, 0, 0, 0, 0, 640250, 670000, 671100, 712033, 705500, 719123].map(v => v + offset), borderColor: '#8BC34A', fill: false }
       ]
     };
   }

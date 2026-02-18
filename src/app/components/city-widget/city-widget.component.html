@@ -1,9 +1,9 @@
-<div class="city-widget" (click)="onWidgetClick()" style="cursor:pointer;">
+<div class="city-widget gradient-border" (click)="onWidgetClick()">
     <h3>{{ city?.name }}</h3>
     <div class="forecast-row">
         <div class="forecast-labels">
             <div class="forecast-title">Forecast</div>
-            <div class="forecast-value">{{ city?.forecastValue }}</div>
+            <div class="forecast-value">{{ formattedForecastValue }}</div>
         </div>
         <div class="forecast-chart">
             <canvas baseChart
@@ -17,7 +17,10 @@
     <div class="forecast-row">
         <div class="forecast-labels">
             <div class="forecast-title">Forecast</div>
-            <div class="forecast-percent">{{ city?.forecastPercent }}%</div>
+            <div class="forecast-percent">
+                <span [style.color]="percentArrow.color" class="percent-arrow">{{ percentArrow.arrow }}</span>
+                <span>{{ city?.forecastPercent }}%</span>
+            </div>
         </div>
         <div class="forecast-chart">
             <canvas baseChart

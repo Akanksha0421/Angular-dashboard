@@ -18,16 +18,34 @@
         ></app-sidebar>
         <div class="hello-row">
           <span class="hello-user">Hello User,</span>
-          <span class="action-items">There are <b>2</b> to action items.</span>
+          <span class="action-items">There are <b style="margin: 3px 2px;">{{ actionItemCount }}</b> action items.</span>
+          <span style="margin-left:2rem; display:flex; align-items:center; gap:0.5rem;">
+            <label for="alignment-select" style="font-size:1rem; color:#b0c4de;">Widget Alignment:</label>
+            <select id="alignment-select" [(ngModel)]="widgetAlignment" style="padding:0.2rem 0.7rem; border-radius:6px; border:1px solid #b0c4de; background:#1a2736; color:#fff;">
+              <option value="top">Top</option>
+              <option value="bottom">Bottom</option>
+              <option value="left">Left</option>
+              <option value="right">Right</option>
+            </select>
+          </span>
         </div>
-        <div class="widgets-row">
-          <div class="widgets-scroll">
-            <app-city-widget
-              *ngFor="let city of cities"
-              [city]="city"
-              (cityClick)="onCityClick(city.id)">
-            </app-city-widget>
-          </div>
+      </div>
+      <div class="widgets-row" [ngClass]="['align-' + widgetAlignment, sidebarOpen ? 'sidebar-open' : '']">
+        <div class="widgets-scroll"
+             [ngClass]="{
+               'scrollable': cities.length > 6,
+               'vertical': widgetAlignment === 'left' || widgetAlignment === 'right',
+               'horizontal': widgetAlignment === 'top' || widgetAlignment === 'bottom',
+               'align-left': widgetAlignment === 'left',
+               'align-right': widgetAlignment === 'right',
+               'align-top': widgetAlignment === 'top',
+               'align-bottom': widgetAlignment === 'bottom'
+             }">
+          <app-city-widget
+            *ngFor="let city of cities"
+            [city]="city"
+            (cityClick)="onCityClick(city.id)">
+          </app-city-widget>
         </div>
       </div>
     </div>

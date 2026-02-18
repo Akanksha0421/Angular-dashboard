@@ -28,8 +28,24 @@ export class MapComponent implements AfterViewInit {
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
       attribution: '© OpenStreetMap contributors © CARTO'
     }).addTo(this.map);
-    this.cities.forEach(city => {
-      const marker = L.marker(city.position as L.LatLngExpression).addTo(this.map);
+    this.cities.forEach((city, idx) => {
+      // Custom circle marker with city number
+      const iconHtml = `<div style="
+        background: linear-gradient(135deg, #00bfff 60%, #00ffb3 100%);
+        border-radius: 50%;
+        width: 36px; height: 36px;
+        display: flex; align-items: center; justify-content: center;
+        color: #fff; font-weight: bold; font-size: 1.1rem;
+        border: 2.5px solid #fff; box-shadow: 0 0 8px #00bfff99;
+      ">${idx + 1}</div>`;
+      const customIcon = L.divIcon({
+        html: iconHtml,
+        className: '',
+        iconSize: [36, 36],
+        iconAnchor: [18, 18],
+        popupAnchor: [0, -18]
+      });
+      const marker = L.marker(city.position as L.LatLngExpression, { icon: customIcon }).addTo(this.map);
       marker.bindTooltip(`<b>${city.name}</b><br>Forecast: ${city.forecastValue}<br>Percent: ${city.forecastPercent}%`, { direction: 'top' });
     });
     // TODO: Add smooth zoom-in animation on load

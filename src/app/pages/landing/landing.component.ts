@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MockDataService } from '../../services/mock-data.service';
 import { CityWidgetComponent } from '../../components/city-widget/city-widget.component';
@@ -10,7 +11,7 @@ import { NavbarComponent } from '../../components/navbar/navbar.component';
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [CommonModule, CityWidgetComponent, MapComponent, SidebarComponent, NavbarComponent],
+  imports: [CommonModule, FormsModule, CityWidgetComponent, MapComponent, SidebarComponent, NavbarComponent],
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss']
 })
@@ -19,6 +20,8 @@ export class LandingComponent implements OnInit {
   sidebarOpen = false;
   stacks: any[] = [];
   selectedStackId: number | null = null;
+  actionItemCount: number = 0;
+  widgetAlignment: 'left' | 'right' | 'top' | 'bottom' = 'top'; // default alignment
 
   constructor(private mockDataService: MockDataService, private router: Router) {}
 
@@ -47,6 +50,8 @@ export class LandingComponent implements OnInit {
     if (this.stacks.length > 0) {
       this.selectedStackId = this.stacks[0].id;
     }
+    // Count stacks in BACKLOG as action items
+    this.actionItemCount = this.stacks.filter(s => s.status === 'BACKLOG').length;
     console.log('[LandingComponent] Cities loaded:', this.cities);
   }
 }

@@ -1,37 +1,88 @@
 <div class="details-root">
 	<app-navbar (menuClick)="onMenuClick()"></app-navbar>
-	<app-sidebar
-		*ngIf="sidebarOpen"
-		[stacks]="stacks"
-		[selectedStackId]="selectedStackId"
-		[expanded]="sidebarOpen"
-		(stackSelect)="onStackSelect($event)"
-		(back)="onSidebarBack()"
-	></app-sidebar>
-	<div class="details-content">
-		<div style="background: #fff; border-radius: 8px; padding: 24px; margin-bottom: 24px;">
-			<canvas baseChart
-				[data]="chartData"
-				[options]="chartOptions"
-				[type]="chartType"
-				height="120">
-			</canvas>
+	<button class="back-to-landing" (click)="goBack()">← Back</button>
+	<div class="details-main-flex">
+		<div class="sidebar-flex" [class.sidebar-open]="sidebarOpen">
+			<app-sidebar
+				*ngIf="sidebarOpen"
+				[stacks]="stacks"
+				[selectedStackId]="selectedStackId"
+				[expanded]="sidebarOpen"
+				(stackSelect)="onStackSelect($event)"
+				(back)="onSidebarBack()"
+			></app-sidebar>
 		</div>
-		<div style="overflow-x:auto;">
-			<table style="width:100%; border-collapse:collapse; background:#fff;">
-				<thead>
-					<tr>
-						<th style="padding:8px; border-bottom:1px solid #eee;"></th>
-						<th *ngFor="let label of chartData.labels" style="padding:8px; border-bottom:1px solid #eee;">{{ label }}</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr *ngFor="let row of tableData">
-						<td style="padding:8px; border-bottom:1px solid #eee; font-weight:bold;">{{ row.label }}</td>
-						<td *ngFor="let val of row.values" style="padding:8px; border-bottom:1px solid #eee;">{{ val }}</td>
-					</tr>
-				</tbody>
-			</table>
+		<div class="details-content" [class.shrunk]="sidebarOpen">
+			<!-- Stack Header -->
+			<div class="stack-header" *ngIf="selectedStack">
+				<div class="stack-title-row">
+					<span class="stack-warning">&#9888;</span>
+					<span class="stack-title">{{ selectedStack.name }}</span>
+					<span class="stack-id">Stack id: <b>{{ selectedStack.id }}</b></span>
+						<span class="stack-forecast-group">
+							<span class="forecast-label-block">
+								<span class="forecast-label-title">FORECAST VALUE</span>
+								<span class="forecast-label-value">${{ selectedStack.forecastValue || '--' }}</span>
+							</span>
+							<span class="forecast-label-block">
+								<span class="forecast-label-title">FORECAST %</span>
+								<span class="forecast-label-value">{{ selectedStack.forecastPercent ? (selectedStack.forecastPercent | number:'1.1-1') + '%' : '--' }}</span>
+							</span>
+							<span class="forecast-label-block">
+								<span class="forecast-label-title">F'CAST STAB.</span>
+								<span class="forecast-label-value">{{ selectedStack.forecastStab || '--' }}</span>
+							</span>
+							<span class="forecast-label-block">
+								<span class="forecast-label-title">F'CAST ACC.</span>
+								<span class="forecast-label-value">{{ selectedStack.forecastAcc || '--' }}</span>
+							</span>
+						</span>
+				</div>
+			</div>
+			<!-- Special Requirements Section -->
+			<div class="special-req-section">
+				<span class="special-req-label">SPECIAL REQUIREMENTS</span>
+				<label class="switch">
+					<input type="checkbox" />
+					<span class="slider round"></span>
+				</label>
+				<span class="special-req-include">INCLUDE</span>
+				<span class="special-req-dropdown">&#9660;</span>
+			</div>
+			<!-- Combined Chart Section -->
+			<div class="combined-chart-row">
+				<canvas baseChart
+					[data]="chartData"
+					[options]="chartOptions"
+					[type]="chartType"
+					height="420">
+				</canvas>
+			</div>
+			<!-- Collapsible Data Sections -->
+			<div class="data-section">
+				<div class="data-row" *ngFor="let data of ['Data 1', 'Data 2', 'Data 3']; let i = index">
+					<div class="data-row-header" (click)="dataExpanded[i] = !dataExpanded[i]">
+						<span>{{ data }}</span>
+						<span class="expand-icon">{{ dataExpanded[i] ? '▼' : '►' }}</span>
+					</div>
+					<div class="data-row-content" *ngIf="dataExpanded[i]">
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th></th>
+									<th *ngFor="let label of chartData.labels">{{ label }}</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr *ngFor="let row of tableData">
+									<td>{{ row.label }}</td>
+									<td *ngFor="let val of row.values">{{ val }}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
