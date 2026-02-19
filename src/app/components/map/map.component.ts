@@ -22,12 +22,13 @@ export class MapComponent implements AfterViewInit {
   @ViewChild('mapContainer', { static: true }) mapContainer!: ElementRef;
   private map!: L.Map;
 
-  ngAfterViewInit() {
+  ngAfterViewInit() {                                        //latitude,longitude,zoomlevel                                 
     this.map = L.map(this.mapContainer.nativeElement).setView([15, -75], 3);
-    // Use CartoDB Dark Matter for a dark map background
+    // Theme: Use CartoDB Dark Matter for a dark map background
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      attribution: '© OpenStreetMap contributors © CARTO'
+     
     }).addTo(this.map);
+    //loop through each city in array
     this.cities.forEach((city, idx) => {
       // Custom circle marker with city number
       const iconHtml = `<div style="
@@ -45,7 +46,9 @@ export class MapComponent implements AfterViewInit {
         iconAnchor: [18, 18],
         popupAnchor: [0, -18]
       });
+      //add marker to map
       const marker = L.marker(city.position as L.LatLngExpression, { icon: customIcon }).addTo(this.map);
+      //add tooltip
       marker.bindTooltip(`<b>${city.name}</b><br>Forecast: ${city.forecastValue}<br>Percent: ${city.forecastPercent}%`, { direction: 'top' });
     });
     // TODO: Add smooth zoom-in animation on load
