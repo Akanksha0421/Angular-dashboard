@@ -40,7 +40,78 @@ export class MockDataService {
         chartDataValue: [80, 100, 90, 110, 100, 120, 110, 130, 120, 140],
         chartDataPercent: [6, 6.5, 6.2, 7, 6.4, 7.2, 6.6, 7.4, 6.8, 7.6],
         position: [48.8566, 2.3522]
-      },
+      }
+      ,
+      {
+        id: 5,
+        name: 'Sydney',
+        forecastValue: '700,000',
+        forecastPercent: 5.3,
+        chartDataValue: [70, 80, 75, 90, 85, 100, 95, 110, 105, 115],
+        chartDataPercent: [5, 5.2, 5.1, 5.4, 5.3, 5.6, 5.5, 5.8, 5.7, 5.9],
+        position: [-33.8688, 151.2093]
+      }
+      ,
+      {
+        id: 5,
+        name: 'Sydney',
+        forecastValue: '700,000',
+        forecastPercent: 5.3,
+        chartDataValue: [70, 80, 75, 90, 85, 100, 95, 110, 105, 115],
+        chartDataPercent: [5, 5.2, 5.1, 5.4, 5.3, 5.6, 5.5, 5.8, 5.7, 5.9],
+        position: [-33.8688, 151.2093]
+      }
+      ,
+      {
+        id: 5,
+        name: 'Sydney',
+        forecastValue: '700,000',
+        forecastPercent: 5.3,
+        chartDataValue: [70, 80, 75, 90, 85, 100, 95, 110, 105, 115],
+        chartDataPercent: [5, 5.2, 5.1, 5.4, 5.3, 5.6, 5.5, 5.8, 5.7, 5.9],
+        position: [-33.8688, 151.2093]
+      }
+      ,
+      {
+        id: 5,
+        name: 'Sydney',
+        forecastValue: '700,000',
+        forecastPercent: 5.3,
+        chartDataValue: [70, 80, 75, 90, 85, 100, 95, 110, 105, 115],
+        chartDataPercent: [5, 5.2, 5.1, 5.4, 5.3, 5.6, 5.5, 5.8, 5.7, 5.9],
+        position: [-33.8688, 151.2093]
+      }
+      ,
+      {
+        id: 5,
+        name: 'Sydney',
+        forecastValue: '700,000',
+        forecastPercent: 5.3,
+        chartDataValue: [70, 80, 75, 90, 85, 100, 95, 110, 105, 115],
+        chartDataPercent: [5, 5.2, 5.1, 5.4, 5.3, 5.6, 5.5, 5.8, 5.7, 5.9],
+        position: [-33.8688, 151.2093]
+      }
+      ,
+      {
+        id: 5,
+        name: 'Sydney',
+        forecastValue: '700,000',
+        forecastPercent: 5.3,
+        chartDataValue: [70, 80, 75, 90, 85, 100, 95, 110, 105, 115],
+        chartDataPercent: [5, 5.2, 5.1, 5.4, 5.3, 5.6, 5.5, 5.8, 5.7, 5.9],
+        position: [-33.8688, 151.2093]
+      }
+      ,
+      {
+        id: 5,
+        name: 'Sydney',
+        forecastValue: '700,000',
+        forecastPercent: 5.3,
+        chartDataValue: [70, 80, 75, 90, 85, 100, 95, 110, 105, 115],
+        chartDataPercent: [5, 5.2, 5.1, 5.4, 5.3, 5.6, 5.5, 5.8, 5.7, 5.9],
+        position: [-33.8688, 151.2093]
+      }
+      ,
       {
         id: 5,
         name: 'Sydney',

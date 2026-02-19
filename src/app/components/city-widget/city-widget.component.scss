@@ -1,91 +1,88 @@
-:host ::ng-deep .forecast-row {
+
+h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.city-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+.city-forecast {
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+.city-percent {
+  font-size: 1rem;
+  color: #00ffb3;
+}
+
+/* Cleaned up SCSS for interview best practices */
+:host {
+  display: flex;
+  flex-direction: column;
+  min-width: 287px;
+  max-width: 99%;
+  width: 100%;
+  background: rgba(22, 36, 58, 0.7);
+  border-radius: 16px;
+  background:
+    linear-gradient(#1a2736, #1a2736) padding-box,
+    linear-gradient(90deg, #00bfff, #00ffb3, #00bfff) border-box;
+  border: 2px solid transparent;
+  background-clip: padding-box, border-box;
+  color: #fff;
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  cursor: pointer;
+  position: relative;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.gradient-border {
+  border-radius: 18px;
+  border: 16.5px solid transparent;
+  transition: box-shadow 0.3s, border-color 0.3s;
+}
+.gradient-border:hover {
+  box-shadow: 0 0 40px 6px #00bfff99, 0 0 0 6px rgba(0,255,179,0.15);
+}
+
+.forecast-row {
   display: flex;
   align-items: center;
   margin-bottom: 0.5rem;
 }
-
-:host ::ng-deep .forecast-labels {
+.forecast-labels {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-
-:host ::ng-deep .forecast-title {
+.forecast-title {
   font-size: 0.95rem;
   color: #b0c4de;
   margin-bottom: 0.1rem;
 }
-
-:host ::ng-deep .forecast-value {
+.forecast-value {
   font-size: 1.3rem;
   font-weight: bold;
   color: #fff;
 }
-
-:host ::ng-deep .forecast-percent {
+.forecast-percent {
   font-size: 1.2rem;
   font-weight: bold;
   color: #00ffb3;
 }
-
-:host ::ng-deep .forecast-chart {
+.forecast-chart {
   flex: 0 0 100px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   height: 40px;
-}
-
-:host {
-  display: flex;
-  flex-direction: column;
-  min-width: 220px;
-  max-width: 99%;
-  width: 100%;
-  background: rgba(22, 36, 58, 0.7); /* semi-transparent dark blue */
-  border-radius: 16px;
-background:
-  linear-gradient(#1a2736, #1a2736) padding-box,   /* solid inner background */
-  linear-gradient(90deg, #00bfff, #00ffb3, #00bfff) border-box; /* gradient border */
-
-border: 2px solid transparent;
-border-radius: 16px;
-background-clip: padding-box, border-box;
-
-  :host {
-    display: flex;
-    flex-direction: column;
-    min-width: 220px;
-    max-width: 100%;
-    width: 100%;
-    background: rgba(22, 36, 58, 0.7);
-    border-radius: 18px;
-    color: #fff;
-    padding: 2rem 1.5rem 1.5rem 1.5rem;
-    cursor: pointer;
-    position: relative;
-    box-sizing: border-box;
-    font-family: inherit;
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .gradient-border {
-    border-radius: 18px;
-    border: 16.5px solid transparent;
-    // background: linear-gradient(120deg, #1a2736 90%, rgba(0,255,179,0.2) 100%) padding-box,
-    //   linear-gradient(90deg, #00bfff, #00ffb3, #00bfff) border-box;
-    // box-shadow: 0 0 24px 2px #00bfff55, 0 0 0 4px rgba(0,255,179,0.08);
-    transition: box-shadow 0.3s, border-color 0.3s;
-  }
-  .gradient-border:hover {
-    box-shadow: 0 0 40px 6px #00bfff99, 0 0 0 6px rgba(0,255,179,0.15);
-    // border-color: #fff;
-  }
-  .forecast-value, .forecast-percent {
-    font-size: 1rem;
-  }
 }
 
 @media (max-width: 600px) {
